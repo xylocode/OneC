@@ -13,7 +13,7 @@ namespace OneC
             {
                 PoolCapacity = 10,
                 PoolTimeout = 60,
-                MaxConnections = 2
+                MaxConnections = 2,
             };
             refer = connector.Connect(connectionString);
         }
@@ -23,12 +23,12 @@ namespace OneC
             dynamic query = refer.NewObject("Запрос");
             query.Текст = @"
 SELECT
-Ссылка Object,
+ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(Ссылка)) Id,
 ГоловнаяОрганизация.ОГРН Organization,
 Код Code,
 ФизическоеЛицо.ФИО Name
 FROM Справочник.Сотрудники
-WHERE ВАрхиве = FALSE
+WHERE ПометкаУдаления = FALSE AND ВАрхиве = FALSE
 ORDER BY Organization ASC, Code ASC
 ";
             //query.УстановитьПараметр("Организация", org);
@@ -38,7 +38,7 @@ ORDER BY Organization ASC, Code ASC
             {
                 yield return new Employee
                 {
-                    Id = Guid.Parse(refer.String(item.Object.УникальныйИдентификатор())),
+                    Id = Guid.Parse(item.Id),
                     Organization = item.Organization,
                     Code = item.Code,
                     Name = item.Name,
