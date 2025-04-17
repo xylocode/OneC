@@ -23,14 +23,18 @@ namespace OneC
             dynamic query = refer.NewObject("Запрос");
             query.Текст = @"
 SELECT
-ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(Ссылка)) Id,
-ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(ГоловнаяОрганизация.Ссылка)) OrganizationId,
-ГоловнаяОрганизация.ОГРН Organization,
-Код Code,
-ФизическоеЛицо.ФИО Name
+	ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(Ссылка)) AS Id
+	,ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(ГоловнаяОрганизация.Ссылка)) AS OrganizationId
+	,ГоловнаяОрганизация.ОГРН AS Organization
+	,Код AS Code
+	,ФизическоеЛицо.ФИО AS Name
 FROM Справочник.Сотрудники
-WHERE ПометкаУдаления = FALSE AND ВАрхиве = FALSE
-ORDER BY Organization ASC, Code ASC
+WHERE
+	ПометкаУдаления = FALSE
+	AND ВАрхиве = FALSE
+ORDER BY
+	Organization ASC
+	, Code ASC
 ";
             //query.УстановитьПараметр("Организация", org);
             dynamic selection = query.Выполнить().Выгрузить();
