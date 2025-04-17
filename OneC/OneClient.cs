@@ -24,6 +24,7 @@ namespace OneC
             query.Текст = @"
 SELECT
 ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(Ссылка)) Id,
+ПРЕДСТАВЛЕНИЕ(УникальныйИдентификатор(ГоловнаяОрганизация.Ссылка)) OrganizationId,
 ГоловнаяОрганизация.ОГРН Organization,
 Код Code,
 ФизическоеЛицо.ФИО Name
@@ -39,6 +40,7 @@ ORDER BY Organization ASC, Code ASC
                 yield return new Employee
                 {
                     Id = Guid.Parse(item.Id),
+                    OrganizationId = Guid.Parse(item.OrganizationId),
                     Organization = item.Organization,
                     Code = item.Code,
                     Name = item.Name,
