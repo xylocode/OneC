@@ -4,7 +4,7 @@ namespace OneC
 {
     public class OneClient
     {
-        private readonly COMConnector connector;
+        private readonly IV8COMConnector connector;
         private readonly dynamic refer;
 
         public OneClient(string connectionString)

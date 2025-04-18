@@ -4,8 +4,8 @@
     {
         public Guid Id { get; set; }
         public Guid OrganizationId {  get; set; }
-        public string Organization { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
+        public required string Organization { get; set; }
+        public required string Code { get; set; }
+        public required string Name { get; set; }
     }
 }

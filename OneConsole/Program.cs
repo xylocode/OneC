@@ -6,7 +6,7 @@ namespace OneConsole
     {
         static void Main(string[] args)
         {
-            var erp = new OneClient("Srvr=xylonet1s1;Ref=hoa_hr;Usr=root;Pwd=root;");
+            var erp = new OneClient("Srvr=;Ref=;Usr=;Pwd=;");
             var staff = erp.GetStaff().ToList();
             foreach (var item in staff)
             {
